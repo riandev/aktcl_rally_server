@@ -66,7 +66,6 @@ client.connect((err) => {
   });
   app.patch("/answers/:id", (req, res) => {
     const answers = req.body;
-    console.log(answers);
     const id = ObjectID(req.params.id);
     leadsCollection
       .updateOne(
