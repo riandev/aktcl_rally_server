@@ -7,7 +7,7 @@ const _ = require("lodash");
 const path = require("path");
 
 const app = express();
-app.use(express.static("../eas_client/build"));
+app.use(express.static("../aktcl_rally_client/build"));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false, limit: "5000mb" }));
 app.use(bodyParser.json({ limit: "5000mb" }));
@@ -15,9 +15,9 @@ const port = 5020;
 
 const MongoClient = require("mongodb").MongoClient;
 // const MongoClient = require("mongodb").MongoClient;
-// const uri = "mongodb://127.0.0.1:27017/aktcl_rally";
-const uri =
-  "mongodb+srv://aktcl:01939773554op5t@cluster0.9akoo.mongodb.net/aktcl_rally?retryWrites=true&w=majority";
+const uri = "mongodb://127.0.0.1:27017/aktcl_rally";
+// const uri =
+//   "mongodb+srv://aktcl:01939773554op5t@cluster0.9akoo.mongodb.net/aktcl_rally?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -3161,10 +3161,11 @@ client.connect((err) => {
       console.log(error);
     }
   });
-
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "../eas_client/build", "index.html"));
-  // });
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../aktcl_rally_client/build", "index.html")
+    );
+  });
 });
 
 app.get("/", (req, res) => {
